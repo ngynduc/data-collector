@@ -17,7 +17,14 @@ param(
 $ErrorActionPreference = "Stop"
 Set-Location (Resolve-Path (Join-Path $PSScriptRoot ".."))
 
-if (-not (& $Python -c "import PyInstaller" 2>$null)) {
+# Probe via exit code, not boolean of the call: with $ErrorActionPreference="Stop",
+# native stderr (a traceback when PyInstaller is absent) raises a terminating
+# NativeCommandError before 2>$null can suppress it.
+$ErrorActionPreference = "Continue"
+& $Python -c "import PyInstaller" 2>&1 | Out-Null
+$hasPyInstaller = $LASTEXITCODE -eq 0
+$ErrorActionPreference = "Stop"
+if (-not $hasPyInstaller) {
     Write-Host "PyInstaller not found. Installing into current env..."
     & $Python -m pip install --upgrade pyinstaller
 }
