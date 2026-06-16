@@ -1,0 +1,25 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Lint cache
+.ruff_cache/
+
+# Secrets — NEVER commit
+.env
+
+# Telegram session files (contain auth keys — treat as passwords)
+*.session
+*.session-journal
+*.session-shm
+*.session-wal
+
+# Export output (contains private data)
+telegram_export/

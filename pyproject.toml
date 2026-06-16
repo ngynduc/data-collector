@@ -1,0 +1,34 @@
+[project]
+name = "telegram-collector"
+version = "0.1.0"
+description = "Export your own Telegram account data via the MTProto API (Telethon)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "ducnta" }]
+dependencies = [
+    "telethon>=1.36.0",
+    "cryptg>=0.4.0",
+    "click>=8.1.7",
+    "python-dotenv>=1.0.1",
+    "rich>=13.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.5.0",
+]
+
+[project.scripts]
+telegram-collector = "telegram_collector.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["telegram_collector"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
