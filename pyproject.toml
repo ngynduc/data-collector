@@ -17,6 +17,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "ruff>=0.5.0",
+    "pyinstaller>=6.0",
 ]
 
 [project.scripts]
