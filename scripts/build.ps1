@@ -43,6 +43,11 @@ Write-Host "Building $Name (this takes a minute)..."
     --hidden-import "telethon.tl.types" `
     main.py
 
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "PyInstaller build failed (exit code $LASTEXITCODE). See log above."
+    exit $LASTEXITCODE
+}
+
 Write-Host ""
 Write-Host "Done. Binary: dist\$Name.exe"
 Write-Host "Verify:      .\dist\$Name.exe --version"
